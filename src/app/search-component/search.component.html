@@ -1,0 +1,50 @@
+<section class="col-xs-12">
+  <div class="col-xs-12">
+    <div class="gray_block header_container">
+      <h1>Find music that you want</h1>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-4">
+    <div class="gray_block search_container">
+      <span>Write artist name here!</span>
+      <input type="text" (ngModelChange)="findMusic(seachingMusic)" [(ngModel)]="seachingMusic" placeholder="e.g. Metallica">
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-8">
+    <div class="gray_block result_block">
+
+      <div *ngIf="!seachingMusic" class="result_mask">
+        <h3>The result will be here</h3>
+      </div>
+
+      <div *ngIf="showMessage" class="result_mask">
+        <h3>No matches</h3>
+      </div>
+
+      <div *ngIf="seachingMusic && !showMessage">
+        <div class="artist_img">
+          <img *ngIf="artistImg" [src]="artistImg" alt="">
+        </div>
+        <div class="artist_info">
+          <h4>Artist name: {{ artistName }}</h4>
+          <p>Artist ID: {{ artistId }}</p>
+          <p>Artist genre: {{ artistGenre }}</p>
+          <a [href]="artistUrl">View on iTunes</a>
+          <audio *ngIf="previewUrl" [src]="previewUrl" controls >music</audio>
+        </div>
+        <div class="pic_links_container">
+          <div *ngFor="let item of getData" class="pic_link">
+            <a [href]="item.artistViewUrl">
+              <img [src]="item.artworkUrl100" alt="View on iTunes">
+            </a>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+
+  
+</section>
